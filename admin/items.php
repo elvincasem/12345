@@ -50,7 +50,17 @@ include_once("include/functions.php");
 											<label>Unit</label>
 											</div>
 											<div class="col-lg-8 text-right">
-                                            <input id="unit" class="form-control" value="" tabindex="2">
+                                           <select id="unit" class="form-control" tabindex="6">	
+												<?php
+														
+												$suplist = selectListSQL("SELECT * FROM items_buom_list");
+												//print_r($employeelist);
+												foreach ($suplist as $rows => $link) {
+
+													echo "<option value='".$link['unit_name']."'>".$link['unit_name']."</option>";
+												}
+												?>
+												</select>
 											</div>
 											
 											<div class="col-lg-4 text-right">
