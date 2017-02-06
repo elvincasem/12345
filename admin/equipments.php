@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 include('header.php');
 include_once("include/functions.php");			
 ?>
@@ -53,9 +53,12 @@ include_once("include/functions.php");
 					</div>
 					<div class="col-lg-8 text-left">
 						<select style="width:100%;" id="article" class="form-control js-example-basic-single" tabindex="3">
-							<option value="Computer">Computer</option>
+							
+							<option value="Laptop">Laptop</option>
+							<option value="Desktop">Desktop</option>
 							<option value="Appliance">Appliance</option>
-							<option value="Chairs and Tables">Chairs and Tables</option>
+							<option value="Chairs">Chairs</option>
+							<option value="Tables">Tables</option>
 							<option value="Printer">Printer</option>
 							<option value="Cabinet">Cabinet</option>
 							
@@ -107,7 +110,22 @@ include_once("include/functions.php");
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="home">
                                     <h5><br></h5>
-						<div class="row">			
+						<div class="row">
+
+					<div class="col-lg-4 text-right">
+					<label>Issued to</label>
+					</div>
+					<div class="col-lg-8 text-right">
+					<input id="issuedto" class="form-control" value="" tabindex="7" >
+					</div>
+					
+					<div class="col-lg-4 text-right">
+					<label>End User</label>
+					</div>
+					<div class="col-lg-8 text-right">
+					<input id="enduser" class="form-control" value="" tabindex="7" >
+					</div>
+						
 							<div class="col-lg-4 text-right">
 							<label>Employee</label>
 							</div>
@@ -141,6 +159,7 @@ include_once("include/functions.php");
 					<div class="col-lg-8 text-left">
 						<select style="width:100%;" id="classification" class="form-control js-example-basic-single" tabindex="8">
 							<option value="Books">Books</option>
+							<option value="Semi-Expendable">Semi-Expendable</option>
 							<option value="Communication Equipment">Communication Equipment</option>
 							<option value="Firefighting Equipment">Firefighting Equipment</option>
 							<option value="Furniture and Fixtures">Furniture and Fixtures</option>
@@ -149,6 +168,7 @@ include_once("include/functions.php");
 							<option value="Motor Vehicle">Motor Vehicle</option>
 							<option value="Office Equipment">Office Equipment</option>
 							<option value="Others Machineries and Equipment">Others Machineries and Equipment</option>
+							<option value="Office Building">Office Building</option>
 						</select>
 					</div>
 					
@@ -350,7 +370,8 @@ include_once("include/functions.php");
 								<th>Particulars</th>
 								<th>Date Acquired</th>
 								<th>Unit Cost</th>
-								<th>Assigned To</th>
+								<th>Issued to</th>
+								<th>End User</th>
 								<th>Classification</th>
 								<th>Action</th>
 							</tr>
@@ -374,6 +395,8 @@ include_once("include/functions.php");
 							$service = $link['service'];
 							$classification = $link['classification'];
 							$whereabout = $link['whereabout'];
+							$issuedto = $link['issuedto'];
+							$enduser = $link['enduser'];
 							$empname = $link['fname']." ".$link['lname'];
 							
 							echo "<tr class='odd gradeX'>";
@@ -382,7 +405,8 @@ include_once("include/functions.php");
 							echo "<td>$particulars</td>";
 							echo "<td>$dateacquired</td>";
 							echo "<td>$totalcost</td>";
-							echo "<td>$empname</td>";
+							echo "<td>$issuedto</td>";
+							echo "<td>$enduser</td>";
 							echo "<td>$classification</td>";
 							echo "<td class='center'> 
 								

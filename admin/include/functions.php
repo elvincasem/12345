@@ -339,11 +339,14 @@ function singleSQL($q){
 		$qty = $_POST['qty'];
 		$datereceived = $_POST['datereceived'];
 		$drno = $_POST['drno'];
+		$aprno = $_POST['aprno'];
 		
 		//return "ok";
-		$sqlinsert = "INSERT INTO inventory(itemNo,unit,qty,datereceived,drno) VALUES($itemno,'$unit',$qty,'$datereceived','$drno')";
+		$sqlinsert = "INSERT INTO inventory(itemNo,unit,qty,datereceived,drno,aprno) VALUES($itemno,'$unit','$qty','$datereceived','$drno','$aprno')";
 		$save = $conn->prepare($sqlinsert);
 		$save->execute();
+		
+		echo $sqlinsert;
 		
 		
 		/*
@@ -686,13 +689,15 @@ function singleSQL($q){
 		$monitorsn = $_POST['monitorsn'];
 		$keyboardsn = $_POST['keyboardsn'];
 		$mousesn = $_POST['mousesn'];
+		$issuedto = $_POST['issuedto'];
+		$enduser = $_POST['enduser'];
 		
 		
 		if($cost == ""){
 			$cost = 0.00;
 		}
 
-		$sqlinsert = "INSERT INTO equipments(propertyNo,article,particulars,dateacquired,totalcost,eid,classification,accountcode,service,whereabout,remarks,inventorytag,supplierID) VALUES('$propertyno','$article','$particulars','$dateacquired','$cost','$eid','$classification','$accountcode','$service','$whereabout','$remarks','$tagno','$supplierid')";
+		$sqlinsert = "INSERT INTO equipments(propertyNo,article,particulars,dateacquired,totalcost,eid,issuedto,enduser,classification,accountcode,service,whereabout,remarks,inventorytag,supplierID) VALUES('$propertyno','$article','$particulars','$dateacquired','$cost','$eid','$issuedto','$enduser','$classification','$accountcode','$service','$whereabout','$remarks','$tagno','$supplierid')";
 		$save = $conn->prepare($sqlinsert);
 		$save->execute();
 		//echo $sqlinsert;
@@ -846,12 +851,14 @@ if($_POST['action'] == "saveequipdetails"){
 		$monitorsn = $_POST['monitorsn'];
 		$keyboardsn = $_POST['keyboardsn'];
 		$mousesn = $_POST['mousesn'];
+		$issuedto = $_POST['issuedto'];
+		$enduser = $_POST['enduser'];
 		
 		if($cost == ""){
 			$cost = 0.00;
 		}
 
-		$sqlinsert = "UPDATE  equipments SET propertyNo='$propertyno',article='$article',particulars='$particulars',dateacquired='$dateacquired',totalcost='$cost',eid='$eid',classification='$classification',accountcode='$accountcode',service='$service',whereabout='$whereabout',remarks='$remarks',inventorytag='$tagno',supplierID='$supplierid' WHERE equipNo='$equipno'; UPDATE equipments_details SET processor='$processor', ram='$ram', hd='$hd',operatingsystem='$os',equipsn='$equipsn', processorsn='$processorsn',monitorsn='$monitorsn',keyboardsn='$keyboardsn',mousesn='$mousesn' WHERE equipNo='$equipno'";
+		$sqlinsert = "UPDATE  equipments SET propertyNo='$propertyno',article='$article',particulars='$particulars',dateacquired='$dateacquired',totalcost='$cost',eid='$eid',classification='$classification',accountcode='$accountcode',service='$service',whereabout='$whereabout',remarks='$remarks',inventorytag='$tagno',supplierID='$supplierid',issuedto='$issuedto',enduser='$enduser'  WHERE equipNo='$equipno'; UPDATE equipments_details SET processor='$processor', ram='$ram', hd='$hd',operatingsystem='$os',equipsn='$equipsn', processorsn='$processorsn',monitorsn='$monitorsn',keyboardsn='$keyboardsn',mousesn='$mousesn' WHERE equipNo='$equipno'";
 		$save = $conn->prepare($sqlinsert);
 		$save->execute();
 		//echo $sqlinsert;

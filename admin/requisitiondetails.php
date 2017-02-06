@@ -4,8 +4,8 @@ include_once("include/functions.php");
 
 		$conn = dbConnect();
 		$reqid = $_GET['id'];
-		$sqlselect = "SELECT requisition_status,reqid,requisition_no, requisition_date, CONCAT(employee.fname,' ',employee.lname) AS fullname,employee.eid FROM requisition_details LEFT JOIN employee 
-ON requisition_details.eid = employee.eid where reqid='$reqid'";
+		$sqlselect = "SELECT requisition_status,reqid,requisition_no, requisition_date,users.userName,logtime, CONCAT(employee.fname,' ',employee.lname) AS fullname,employee.eid FROM requisition_details LEFT JOIN employee 
+ON requisition_details.eid = employee.eid LEFT JOIN users ON users.userID = requisition_details.userID where reqid='$reqid'";
 		$stmt = $conn->prepare($sqlselect);
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -16,6 +16,8 @@ ON requisition_details.eid = employee.eid where reqid='$reqid'";
 		$efullname = $row['fullname'];
 		$req_status = $row['requisition_status'];
 		$eid = $row['eid'];
+		$userName = $row['userName'];
+		$logtime = $row['logtime'];
 		$conn = null;
 		//print_r($row);
 ?>
@@ -171,6 +173,18 @@ ON requisition_details.eid = employee.eid where reqid='$reqid'";
                                                 <option value="NONE">NONE</option>
 												<option value="CANCELLED">CANCELLED</option>
                                             </select>
+                                            
+                                        </div>
+<div class="form-group">
+                                            <label>Added By:</label>
+                                            
+                                            <div><?php echo $userName;?></div>
+                                            
+                                        </div>
+<div class="form-group">
+                                            <label>Logtime</label>
+                                            <div><?php echo $logtime;?> </div>
+                                           
                                             
                                         </div>
 						

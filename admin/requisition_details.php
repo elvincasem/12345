@@ -4,7 +4,7 @@ include_once("include/functions.php");
 
 		$conn = dbConnect();
 		$reqid = $_GET['id'];
-		$sqlselect = "SELECT reqid,requisition_no, requisition_date, CONCAT(employee.fname,' ',employee.lname) AS fullname,employee.eid FROM requisition_details LEFT JOIN employee 
+		$sqlselect = "SELECT reqid,requisition_no,userID,logtime, requisition_date, CONCAT(employee.fname,' ',employee.lname) AS fullname,employee.eid FROM requisition_details LEFT JOIN employee 
 ON requisition_details.eid = employee.eid where reqid='$reqid'";
 		$stmt = $conn->prepare($sqlselect);
 		$stmt->execute();
@@ -15,6 +15,8 @@ ON requisition_details.eid = employee.eid where reqid='$reqid'";
 		$rdate = $row['requisition_date'];
 		$efullname = $row['fullname'];
 		$eid = $row['eid'];
+		$userID = $row['userID'];
+		$logtime = $row['logtime'];
 		$conn = null;
 		//print_r($row);
 ?>

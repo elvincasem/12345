@@ -450,11 +450,12 @@ function displayitemunit(itemid){
 					var qty = document.getElementById("qty").value;
 					var datereceived = document.getElementById("datereceived").value;
 					var drno = document.getElementById("drno").value;
-					
+					var aprno = document.getElementById("aprno").value;
+					//alert(aprno);
 					$.ajax({
                     url: 'include/functions.php',
                     type: 'post',
-                    data: {action: "saveinventory", itemno: itemno, unit: unit, qty: qty,datereceived:datereceived,drno:drno},
+                    data: {action: "saveinventory", itemno: itemno, unit: unit, qty: qty,datereceived:datereceived,drno:drno, aprno:aprno},
                     success: function(response) {
 						console.log(response);
 						//document.getElementById("unit").value = "";
@@ -1181,6 +1182,8 @@ function updateinventory_inv(ino){
 				var remarks = document.getElementById("remarks").value;
 				var tagno = document.getElementById("tagno").value;
 				var supplierid = document.getElementById("supplier").value;
+				var issuedto = document.getElementById("issuedto").value;
+				var enduser = document.getElementById("enduser").value;
 				
 				//peripheral details
 				var processor = document.getElementById("processor").value;
@@ -1216,14 +1219,14 @@ if(propertyno != '' && particulars !=''){
 					$.ajax({
 						url: 'include/functions.php',
 						type: 'post',
-						data: {action: "saveequipment", propertyno: propertyno,article:article, particulars:particulars,dateacquired:dateacquired,cost:cost,eid: eid, classification: classification,accountcode:accountcode,tagno:tagno,service:service,whereabout:whereabout,remarks:remarks,supplierid:supplierid, processor:processor,ram:ram,hd:hd,os:os,equipsn:equipsn,processorsn:processorsn,monitorsn:monitorsn,keyboardsn:keyboardsn,mousesn:mousesn},
+						data: {action: "saveequipment", propertyno: propertyno,article:article, particulars:particulars,dateacquired:dateacquired,cost:cost,eid: eid, classification: classification,accountcode:accountcode,tagno:tagno,service:service,whereabout:whereabout,remarks:remarks,supplierid:supplierid, processor:processor,ram:ram,hd:hd,os:os,equipsn:equipsn,processorsn:processorsn,monitorsn:monitorsn,keyboardsn:keyboardsn,mousesn:mousesn,issuedto:issuedto,enduser:enduser},
 						success: function(response) {
 							console.log(response);
 
 							$( ".simplemodal-close" ).trigger( "click" );
 							 //setTimeout(function(){location.reload();},1500);
 							//window.location.href = "equipmentsdetails.php?id=" + response;
-						   //window.location.reload();
+						   window.location.reload();
 							return "valid";
 						}
 					});	
@@ -1265,6 +1268,8 @@ if(propertyno != '' && particulars !=''){
 				var remarks = document.getElementById("remarks").value;
 				var tagno = document.getElementById("tagno").value;
 				var supplierid = document.getElementById("supplier").value;
+				var issuedto = document.getElementById("issuedto").value;
+				var enduser = document.getElementById("enduser").value;
 				
 				
 				//peripheral details
@@ -1281,7 +1286,7 @@ if(propertyno != '' && particulars !=''){
 				$.ajax({
 				url: 'include/functions.php',
 				type: 'post',
-				data: {action: "updateequipment",equipno:equipno, propertyno: propertyno,article:article, particulars:particulars,dateacquired:dateacquired,cost:cost,eid: eid, classification: classification,accountcode:accountcode,tagno:tagno,service:service,whereabout:whereabout,remarks:remarks,supplierid:supplierid,processor,processor:processor,ram:ram,hd:hd,os:os,equipsn:equipsn,processorsn:processorsn,monitorsn:monitorsn,keyboardsn:keyboardsn,mousesn:mousesn},
+				data: {action: "updateequipment",equipno:equipno, propertyno: propertyno,article:article, particulars:particulars,dateacquired:dateacquired,cost:cost,eid: eid, classification: classification,accountcode:accountcode,tagno:tagno,service:service,whereabout:whereabout,remarks:remarks,supplierid:supplierid,processor,processor:processor,ram:ram,hd:hd,os:os,equipsn:equipsn,processorsn:processorsn,monitorsn:monitorsn,keyboardsn:keyboardsn,mousesn:mousesn,issuedto:issuedto,enduser:enduser},
 				success: function(response) {
 					console.log(response);
 
@@ -1437,6 +1442,8 @@ $('#editbutton').click(function(){
 	$('#monitorsn').prop("disabled", false);
 	$('#keyboardsn').prop("disabled", false);
 	$('#mousesn').prop("disabled", false);
+	$('#issuedto').prop("disabled", false);
+	$('#enduser').prop("disabled", false);
 	
 });
 
@@ -1454,6 +1461,8 @@ function editequipment(id){
 	$('#dateacquired').prop("disabled", true);
 	$('#cost').prop("disabled", true);
 	$('#eid').prop("disabled", true);
+	$('#issuedto').prop("disabled", true);
+	$('#enduser').prop("disabled", true);
 	$('#classification').prop("disabled", true);
 	$('#accountcode').prop("disabled", true);
 	$('#service').prop("disabled", true);
@@ -1591,6 +1600,8 @@ function editequipment(id){
 			document.getElementById("monitorsn").value = data.monitorsn;
 			document.getElementById("keyboardsn").value = data.keyboardsn;
 			document.getElementById("mousesn").value = data.mousesn;
+			document.getElementById("issuedto").value = data.issuedto;
+			document.getElementById("enduser").value = data.enduser;
 			return "valid";
 		} 
 	});
@@ -1621,6 +1632,8 @@ $('#updateequipment').prop("disabled", true);
 			document.getElementById("remarks").value="";
 			document.getElementById("tagno").value="";
 			document.getElementById("supplier").value="";
+			document.getElementById("issuedto").value="";
+			document.getElementById("enduser").value="";
 			
 			$('#propertyno').prop("disabled", false);   
 	$('#article').prop("disabled", false);

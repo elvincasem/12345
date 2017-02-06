@@ -44,7 +44,7 @@ body {
 	
 	<script>
 	
-	window.print();
+	//window.print();
 	
 	</script>
 	
@@ -91,7 +91,7 @@ body {
 	
 	<table border="1" width="1180">
 	<td colspan="6">
-			<center><strong>Requisition</strong><span style="padding-left:600px;">&nbsp;</span> <strong>Issuance</strong></center>
+			<center><strong>Requisition</strong><span style="padding-left:440px;">&nbsp;</span> <strong>Stock Available</strong><span style="padding-left:150px;">&nbsp;</span> <strong>Issuance</strong></center>
 		</td></tr>
 	</div>
 	</table>
@@ -114,6 +114,12 @@ body {
 		</td>
 		<td colspan="1" style="text-align:center;">
 		Quantity
+		</td>
+		<td colspan="1" style="text-align:center;">
+		Yes
+		</td>
+		<td colspan="1" style="text-align:center;">
+		No
 		</td>
 		<td colspan="1" style="text-align:center;">
 		Quantity
@@ -151,6 +157,10 @@ INNER JOIN items ON requisition_items.itemno = items.itemNo WHERE requisition_no
 		<h1></h1></td>";
 		echo "<td colspan='1' style='text-align:center;'>
 		<h1></h1></td>";
+		echo "<td colspan='1' style='text-align:center;'>
+		<h1></h1></td>";
+		echo "<td colspan='1' style='text-align:center;'>
+		<h1></h1></td>";
 		echo "</tr>";
 	}
 	?>
@@ -166,6 +176,12 @@ INNER JOIN items ON requisition_items.itemno = items.itemNo WHERE requisition_no
 		
 		
 		<td colspan="1" style="text-align:center;vertical-align:top;">
+		<h1></h1>
+		</td>
+		<td colspan="1" style="text-align:center;">
+		<h1></h1>
+		</td>
+		<td colspan="1" style="text-align:center;">
 		<h1></h1>
 		</td>
 		<td colspan="1" style="text-align:center;">
@@ -227,9 +243,9 @@ INNER JOIN items ON requisition_items.itemno = items.itemNo WHERE requisition_no
 		<br>
 		<br>
 		<br>
-		<strong>NYMPHA N. BUENNIO</strong>
+		<strong>&nbsp;<strong>_______________________________</strong>&nbsp;</strong>
 		<br>
-		Chief Admin. Officer
+		
 		</td>
 		
 		
@@ -238,14 +254,16 @@ INNER JOIN items ON requisition_items.itemno = items.itemNo WHERE requisition_no
 		<br>
 		<br>
 		<br>
-		<strong>ROGELIO T. GALERA, JR.</strong>
+		<strong>_______________________________</strong>
 		<br>
-		ES II/Supply Officer Designate
+		
 		</td>
 		
 		
 		<td colspan="1" style="text-align:center;vertical-align:top;">
 		Received by:
+<br><br>
+		<strong>________________</strong>
 		</td>
 		
 	
